@@ -4,10 +4,12 @@ import {Wave} from './wave.js';
     모듈에 대하여
     https://ko.javascript.info/modules-intro
 */
-class App{
+export class module{
     /* 생성자 */
-    constructor (){
-
+    constructor(colorCode, speed){
+        this.color =  colorCode;
+        this.speed = speed;
+        console.log(this.speed);
         /* canvas 엘리먼트 생성 */
         /* canvas는 getContext()를 이용해 그리기 함수를 사용할 수 있음. */
         this.canvas = document.createElement('canvas');
@@ -70,7 +72,7 @@ class App{
         this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight);
 
         /* 애니메이션이 실행되면 웨이브가 그려지도록 설정 */
-        this.wave.draw(this.ctx);
+        this.wave.draw(this.ctx, this.color, this.speed);
 
         /* this를 바인드한 채로 애니메이션 프레임 요청 */
         requestAnimationFrame(this.animate.bind(this));
@@ -78,6 +80,3 @@ class App{
 
 }
 
-window.onload = () => {
-    new App();
-}
